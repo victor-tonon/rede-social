@@ -81,12 +81,12 @@
 
           if ($pub['imagem']=="") {
             echo '<div class="pub" id="'.$id.'">
-                <p><a href="#">'.$nome.'</a> - '.$pub["data"].'</p>
+                <p><a href="profile.php?id='.$saber['id'].'">'.$nome.'</a> - '.$pub["data"].'</p>
                 <span>'.$pub['texto'].'</span><br/> 
             </div>';
           }else{
             echo '<div class="pub" id="'.$id.'">
-                <p><a href="#">'.$nome.'</a> - '.$pub["data"].'</p>
+                <p><a href="profile.php?id='.$saber['id'].'">'.$nome.'</a> - '.$pub["data"].'</p>
                 <span>'.$pub['texto'].'</span> 
                 <img src="upload/'.$pub['imagem'].'" />
             </div>';
