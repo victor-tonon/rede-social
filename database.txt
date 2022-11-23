@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21-Nov-2022 às 02:05
+-- Tempo de geração: 23-Nov-2022 às 01:35
 -- Versão do servidor: 10.4.25-MariaDB
 -- versão do PHP: 8.1.10
 
@@ -26,6 +26,19 @@ USE `facebook2`;
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `amizades`
+--
+
+DROP TABLE IF EXISTS `amizades`;
+CREATE TABLE `amizades` (
+  `id` int(11) NOT NULL,
+  `de` text NOT NULL,
+  `para` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `pubs`
 --
 
@@ -43,8 +56,7 @@ CREATE TABLE `pubs` (
 --
 
 INSERT INTO `pubs` (`id`, `user`, `texto`, `imagem`, `data`) VALUES
-(1, 'amanda@teste.com.br', 'asdasdas', '', '2022-11-21'),
-(2, 'amanda@teste.com.br', 'teste', '537368image-removebg-preview (6).png', '2022-11-21');
+(4, 'teste@gmail.com', 'Olá\r\n', '', '2022-11-23');
 
 -- --------------------------------------------------------
 
@@ -56,7 +68,8 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `nome` varchar(50) NOT NULL,
-  `apelido` varchar(50) NOT NULL,
+  `sobrenome` varchar(50) NOT NULL,
+  `img` text NOT NULL,
   `email` varchar(200) NOT NULL,
   `password` varchar(30) NOT NULL,
   `data` date NOT NULL
@@ -66,13 +79,18 @@ CREATE TABLE `users` (
 -- Extraindo dados da tabela `users`
 --
 
-INSERT INTO `users` (`id`, `nome`, `apelido`, `email`, `password`, `data`) VALUES
-(1, 'Victor', 'tonon', 'teste@gmail.com', '123456', '1999-09-14'),
-(2, 'Amanda', 'amandinha', 'amanda@teste.com.br', '123456', '0000-00-00');
+INSERT INTO `users` (`id`, `nome`, `sobrenome`, `img`, `email`, `password`, `data`) VALUES
+(3, 'Victor', 'Tonon', '', 'teste@gmail.com', '123456', '0000-00-00');
 
 --
 -- Índices para tabelas despejadas
 --
+
+--
+-- Índices para tabela `amizades`
+--
+ALTER TABLE `amizades`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices para tabela `pubs`
@@ -91,21 +109,24 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de tabela `amizades`
+--
+ALTER TABLE `amizades`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `pubs`
 --
 ALTER TABLE `pubs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-ALTER TABLE `users` ADD `img` TEXT NOT NULL AFTER `apelido`;

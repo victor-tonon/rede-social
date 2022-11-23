@@ -22,13 +22,13 @@
 </head>
 <body>
   <div id="topo">
-    <a href="#"><img src="img/logo.svg" width="90" name="logo"></a>
+    <a href="index.php"><img src="img/logo.svg" width="90" name="logo"></a>
     <form method="GET">
       <input type="text" placeholder="Pesquisar" name="query" autocomplete="off">
       <input type="submit" hidden>
     </form>
     <a href="#"><img src="img/chat.png" width="30" name="menu"></a>
-    <a href="#"><img src="img/perfil.png" width="30" name="menu"></a>
+    <a href="myprofile.php"><img src="img/perfil.png" width="30" name="menu"></a>
   </div>  
 </body>
 </html>

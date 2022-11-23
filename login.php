@@ -8,7 +8,7 @@
     if (mysqli_num_rows($verifica)<=0) {
       echo "<h3> E-mail ou Senha incorreto!</h3>";
     } else{
-      setcookie("login",$email);
+      setcookie("login", $email);
       header("location: ./");
     }
   }

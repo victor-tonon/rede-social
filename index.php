@@ -76,7 +76,7 @@
           $email = $pub['user'];
           $saberr = mysqli_query($link, "SELECT * FROM users WHERE email='$email'");
           $saber = mysqli_fetch_assoc($saberr);
-          $nome = $saber['nome']." ".$saber['apelido'];
+          $nome = $saber['nome']." ".$saber['sobrenome'];
           $id = $pub['id'];
 
           if ($pub['imagem']=="") {

@@ -3,7 +3,7 @@
 
   if (isset($_POST['criar'])){
     $nome = $_POST['nome'];
-    $apelido = $_POST['apelido'];
+    $sobrenome = $_POST['sobrenome'];
     $email = $_POST['email'];
     $pass = $_POST['pass'];
     $data = date("Y/m/d");
@@ -19,7 +19,7 @@
     }elseif ($pass == '' OR strlen($pass)<6){
       echo '<h3>Senha inválida. A senha deve conter o minímo de 6 caracteres!</h3>';
     }else {
-      $query = "INSERT INTO users (`nome`,`apelido`,`email`,`password`,`data`) VALUES ('$nome','$apelido','$email','$pass','data')";
+      $query = "INSERT INTO users (`nome`,`sobrenome`,`email`,`password`,`data`) VALUES ('$nome','$sobrenome','$email','$pass','$data')";
       $data = mysqli_query($link,$query) or die(mysql_error());
       if ($data){
         setcookie("login",$email);
@@ -54,7 +54,7 @@
     <h2>Crie sua conta</h2>
     <form method="POST">
       <input type="text" placeholder="Primeiro nome" name="nome"><br/>
-      <input type="text" placeholder="Apelido" name="apelido"><br/>
+      <input type="text" placeholder="Sobrenome" name="sobrenome"><br/>
       <input type="email" placeholder="Endereço e-mail" name="email"><br/>
       <input type="password" placeholder="Senha" name="pass"><br/>
       <input type="submit" value="Cadastre-se" name="criar">

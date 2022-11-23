@@ -1,16 +1,15 @@
 <?php
   include("header.php");
 
-  $id = $_GET["id"];
-  $saberr = mysqli_query($link, "SELECT * FROM users WHERE id='$id'");
+  $saberr = mysqli_query($link, "SELECT * FROM users WHERE email='$login_cookie'");
   $saber = mysqli_fetch_assoc($saberr);
   $email = $saber["email"];
 
-  if ($email == $login_cookie) {
-    header("myprofile.php");
-  }
-
   $pubs = mysqli_query($link, "SELECT * FROM pubs WHERE user='$email' ORDER BY id desc");
+
+  if (isset($_POST['settings'])){
+    header("location: settings.php");
+  }
 
 ?>
 <html>
@@ -20,9 +19,7 @@
       img#profile{width: 100px; height: 100px; display: block; margin: auto; margin-top: 30px; border: 5px solid #825A6D; background-color: #825A6D; border-radius: 10px; margin-bottom: -30px;}
       div#menu{width: 300px; height: 120px; display: block; margin: auto; border: none; border-radius: 5px; background-color: #825A6D; text-align: center;}
       div#menu input{height: 25px; border: none; border-radius: 3px; background-color: #FFF; cursor: pointer;}
-      div#menu input[name="add"]{margin-right: 40px;}
-      div#menu input[name="remover"]{margin-right: 40px;}
-      div#menu input[name="cancelar"]{margin-right: 40px;}
+      div#menu input[name="settings"]{margin-right: 40px;}
       div#menu input:hover{height: 25px; border: none; border-radius: 3px; background-color: transparent; cursor: pointer; color: #FFF;}
       div.pub{width: 400px; min-height: 70px; max-height: 1000px; display: block; margin: auto; border: none; border-radius: 5px; background-color: #FFF; box-shadow: 0 0 6px #A1A1A1; margin-top: 30px;}
       div.pub a{color: #666; text-decoration: none;}
@@ -35,25 +32,15 @@
   <body>
     <?php
       if ($saber["img"]=="") {
-        echo '<img src="img/user.png" id="profile">';
+        echo '<a href="#" style="width: 400px; display: block; margin: auto;"><img src="img/user.png" id="profile"></a>';
       }else{
-        echo '<img src="upload/'.$saber["img"].'" id="profile">';
+        echo '<a href="#" style="width: 400px; display: block; margin: auto;"><img src="upload/'.$saber["img"].'" id="profile"></a>';
       }
     ?>
     <div id="menu">
-      <form method="POST">
+    <form method="POST">
       <h2><?php echo $saber['nome']." ".$saber['sobrenome']; ?></h2><br/>
-      <?php
-        $amigos = mysqli_query($link, "SELECT * FROM amizades WHERE de='$login_cookie' AND para='$email' OR para='$login_cookie' AND de='$email'");
-        $amigoss = mysqli_fetch_assoc($amigos);
-        if (mysqli_num_rows($amigos)>=1 AND $amigoss["aceite"]=="sim"){
-          echo '<input type="submit" value="Remover amigo" name="remover"><input type="submit" name="denunciar" value="Denunciar">';
-        }elseif (mysqli_num_rows($amigos)>=1 AND $amigoss["aceite"]=="nao"){
-          echo '<input type="submit" value="Cancelar pedido" name="cancelar"><input type="submit" name="denunciar" value="Denunciar">';
-        }else{
-          echo '<input type="submit" value="Adicionar amigo" name="add"><input type="submit" name="denunciar" value="Denunciar">';
-        }
-      ?>
+      <input type="submit" value="Alterar info" name="settings"><input type="submit" name="amigos" value="Ver amigos">
       </form>
     </div>
     <?php
