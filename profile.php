@@ -7,10 +7,30 @@
   $email = $saber["email"];
 
   if ($email == $login_cookie) {
-    header("myprofile.php");
+    header("Location: myprofile.php");
   }
 
   $pubs = mysqli_query($link, "SELECT * FROM pubs WHERE user='$email' ORDER BY id desc");
+
+  if (isset($_POST['add'])) {
+    add();
+  }
+
+  function add(){
+    $login_cookie = $_COOKIE['login'];
+    if (!isset($login_cookie)){
+      header("Location: login.php");
+    }
+    $id = $_GET['id'];
+    $saberr = mysqli_query($link, "SELECT * FROM users WHERE id='$id'");
+    $saber = mysqli_fetch_assoc($saberr);
+    $email = $saber['email'];
+    $data = date("Y/m/d");
+
+    $ins = "INSERT INTO amizades (`de`, `para`, `data`) VALUES ('$login_cookie', '$email', '$data')";
+    $conf = mysqli_query($link,$ins) or die(mysql_error());
+    
+    }
 
 ?>
 <html>
