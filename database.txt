@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23-Nov-2022 às 01:35
+-- Tempo de geração: 24-Nov-2022 às 02:54
 -- Versão do servidor: 10.4.25-MariaDB
 -- versão do PHP: 8.1.10
 
@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `facebook2`
 --
+
 CREATE DATABASE IF NOT EXISTS `facebook2` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `facebook2`;
 
@@ -29,12 +30,20 @@ USE `facebook2`;
 -- Estrutura da tabela `amizades`
 --
 
-DROP TABLE IF EXISTS `amizades`;
 CREATE TABLE `amizades` (
   `id` int(11) NOT NULL,
-  `de` text NOT NULL,
-  `para` text NOT NULL
+  `de` varchar(200) NOT NULL,
+  `para` varchar(200) NOT NULL,
+  `aceite` varchar(3) NOT NULL DEFAULT 'nao',
+  `data` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `amizades`
+--
+
+INSERT INTO `amizades` (`id`, `de`, `para`, `aceite`, `data`) VALUES
+(11, 'teste@gmail.com', 'amanda@teste.com.br', 'sim', '2022-11-24');
 
 -- --------------------------------------------------------
 
@@ -42,7 +51,6 @@ CREATE TABLE `amizades` (
 -- Estrutura da tabela `pubs`
 --
 
-DROP TABLE IF EXISTS `pubs`;
 CREATE TABLE `pubs` (
   `id` int(11) NOT NULL,
   `user` varchar(200) NOT NULL,
@@ -56,7 +64,8 @@ CREATE TABLE `pubs` (
 --
 
 INSERT INTO `pubs` (`id`, `user`, `texto`, `imagem`, `data`) VALUES
-(4, 'teste@gmail.com', 'Olá\r\n', '', '2022-11-23');
+(4, 'teste@gmail.com', 'Olá\r\n', '', '2022-11-23'),
+(5, 'amanda@teste.com.br', 'Olá :)', '', '2022-11-23');
 
 -- --------------------------------------------------------
 
@@ -64,7 +73,6 @@ INSERT INTO `pubs` (`id`, `user`, `texto`, `imagem`, `data`) VALUES
 -- Estrutura da tabela `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `nome` varchar(50) NOT NULL,
@@ -80,7 +88,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nome`, `sobrenome`, `img`, `email`, `password`, `data`) VALUES
-(3, 'Victor', 'Tonon', '', 'teste@gmail.com', '123456', '0000-00-00');
+(3, 'Victor', 'Tonon', '', 'teste@gmail.com', '123456', '0000-00-00'),
+(4, 'Amanda', 'vitoria', '', 'amanda@teste.com.br', '123456', '2022-11-23');
 
 --
 -- Índices para tabelas despejadas
@@ -112,19 +121,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `amizades`
 --
 ALTER TABLE `amizades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `pubs`
 --
 ALTER TABLE `pubs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
