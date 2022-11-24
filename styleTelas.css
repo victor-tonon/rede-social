@@ -1,0 +1,13 @@
+* {
+  font-family: "Poppins";
+}
+
+body {
+  justify-content: center;
+  align-items: center;
+  background: #dde5f4;
+  height: 100vh;
+}
+button {
+  cursor: pointer;
+}

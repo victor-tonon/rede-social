@@ -14,17 +14,18 @@
 ?>
 <html>
   <header>
+    <link rel="stylesheet" type="text/css" href="styleTelas.css" />
     <style type="text/css">
-      h2{text-align: center; padding-top: 30px; color: #FFF;}
-      img#profile{width: 100px; height: 100px; display: block; margin: auto; margin-top: 30px; border: 5px solid #825A6D; background-color: #825A6D; border-radius: 10px; margin-bottom: -30px;}
-      div#menu{width: 300px; height: 120px; display: block; margin: auto; border: none; border-radius: 5px; background-color: #825A6D; text-align: center;}
-      div#menu input{height: 25px; border: none; border-radius: 3px; background-color: #FFF; cursor: pointer;}
+      h2{text-align: center; padding-top: 30px; color: #3e4684;}
+      img#profile{width: 100px; height: 100px; display: block; margin: auto; margin-top: 30px; border: 5px solid #f1f7fe; background-color: #f1f7fe; border-radius: 10px; margin-bottom: -30px;}
+      div#menu{width: 300px; height: 120px; display: block; margin: auto; border: none; border-radius: 5px; background-color: #f1f7fe; text-align: center;}
+      div#menu input{height: 25px; border: none; border-radius: 3px; background-color: #3e4684; cursor: pointer; color: #f1f7fe;}
       div#menu input[name="settings"]{margin-right: 40px;}
-      div#menu input:hover{height: 25px; border: none; border-radius: 3px; background-color: transparent; cursor: pointer; color: #FFF;}
+      div#menu input:hover{height: 25px; border: none; border-radius: 3px; background-color: #f1f7fe; cursor: pointer; color: #3e4684;}
       div.pub{width: 400px; min-height: 70px; max-height: 1000px; display: block; margin: auto; border: none; border-radius: 5px; background-color: #FFF; box-shadow: 0 0 6px #A1A1A1; margin-top: 30px;}
-      div.pub a{color: #666; text-decoration: none;}
-      div.pub a:hover{color: #111; text-decoration: none;}
-      div.pub p{margin-left: 10px; content: #666; padding-top: 10px;}
+      div.pub a{color: #3e4684; text-decoration: none;}
+      div.pub a:hover{color: #3e4684; text-decoration: none;}
+      div.pub p{margin-left: 10px; content: #3e4684; padding-top: 10px;}
       div.pub span{display: block; margin: auto; width: 380px; margin-top: 10px;}
       div.pub img{display: block; margin: auto; width: 100%; margin-top: 10px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;}
     </style>

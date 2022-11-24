@@ -1,3 +1,19 @@
+User: id19904499_root
+Senha: redesocial-Facetoo2
+Id: id19904499_facebook2
+Hospedagem: localhost
+
+------
+000WebHost ->
+
+$host = "localhost";
+$usuario = "id19904499_root";
+$senha = "redesocial-Facetoo2";
+$banco = "id19904499_facebook2";
+
+$link = mysqli_connect("$host", "$usuario", "$senha", "$banco");
+--------
+
 -- phpMyAdmin SQL Dump
 -- version 5.2.0
 -- https://www.phpmyadmin.net/

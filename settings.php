@@ -10,18 +10,18 @@
     $pass = $_POST['pass'];
 
     if($nome==""){
-      echo "<h2>Escreva seu nome</h2>";
+      echo "<script>alert('Escreva seu nome')</script>";
     }elseif($sobrenome==""){
-      echo "<h2>Escreva seu sobrenome</h2>";
+      echo "<script>alert('Escreva seu sobrenome')</script>";
   }elseif($pass==""){
-    echo "<h2>Escreva sua senha</h2>";
+    echo "<script>alert('Escreva sua senha')</script>";
   }else{
     $query = "UPDATE users SET nome='$nome', sobrenome='$sobrenome', password='$pass' WHERE email='$login_cookie'";
     $data = mysqli_query($link, $query);
     if ($data) {
       header("Location: myprofile.php");
     }else{
-      echo "<h2>Algo não ocorreu como esperado...</h2>";
+      echo "<script>alert('Algo não ocorreu como esperado...')</script>";
     }
   }
 }
@@ -35,6 +35,7 @@
 <html>
   <head>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="styleTelas.css" />
     <style type="text/css">
       *{font-family: 'Montserrat', cursive;}
       img[name="p"]{display: block; margin: auto; margin-top: 20px; width: 200px;}
@@ -46,11 +47,13 @@
       input[type="submit"]:hover{background-color: #470F2A; color: #fff; cursor: pointer;}   
       h2{text-align: center; margin-top: 20px;}
       h3{text-align: center; color: #470F2A; margin-top: 15px;}
+      h1{text-align: center; color: #5e5e5e; margin-top: 15px;}
+	    h4{text-align: center; color: #5e5e5e; margin-top: 15px;}
       a{text-decoration: none; color: #333}
     </style>
   </head>
   <body>
-    <img name="p" src="img/logo.svg" alt="logo">
+    <img name="p" src="img/logo.png" alt="logo">
     <h2>Alterar suas informações</h2>
     <form method="POST">
       <input type="text" placeholder="Primeiro nome" value="<?php echo $info['nome']; ?>" name="nome"><br/>

@@ -17,7 +17,7 @@
   }
 
   function add(){
-    $link = mysqli_connect("127.0.0.1", "root", "", "facebook2");
+    include("db.php");
     $login_cookie = $_COOKIE['login'];
     if (!isset($login_cookie)){
       header("Location: login.php");
@@ -42,7 +42,7 @@
   }
 
   function cancel(){
-    $link = mysqli_connect("127.0.0.1", "root", "", "facebook2");
+    include("db.php");
     $login_cookie = $_COOKIE['login'];
     if (!isset($login_cookie)){
       header("Location: login.php");
@@ -66,7 +66,7 @@
   }
 
   function remove(){
-    $link = mysqli_connect("127.0.0.1", "root", "", "facebook2");
+    include("db.php");
     $login_cookie = $_COOKIE['login'];
     if (!isset($login_cookie)){
       header("Location: login.php");
@@ -90,7 +90,7 @@
   }
 
   function aceitar(){
-    $link = mysqli_connect("127.0.0.1", "root", "", "facebook2");
+    include("db.php");
     $login_cookie = $_COOKIE['login'];
     if (!isset($login_cookie)){
       header("Location: login.php");
@@ -111,6 +111,7 @@
 ?>
 <html>
   <header>
+    <link rel="stylesheet" type="text/css" href="styleTelas.css" />
     <style type="text/css">
       h2{text-align: center; padding-top: 30px; color: #FFF;}
       img#profile{width: 100px; height: 100px; display: block; margin: auto; margin-top: 30px; border: 5px solid #825A6D; background-color: #825A6D; border-radius: 10px; margin-bottom: -30px;}
