@@ -17,6 +17,7 @@
   }
 
   function add(){
+    $link = mysqli_connect("127.0.0.1", "root", "", "facebook2");
     $login_cookie = $_COOKIE['login'];
     if (!isset($login_cookie)){
       header("Location: login.php");
@@ -28,10 +29,85 @@
     $data = date("Y/m/d");
 
     $ins = "INSERT INTO amizades (`de`, `para`, `data`) VALUES ('$login_cookie', '$email', '$data')";
-    $conf = mysqli_query($link,$ins) or die(mysql_error());
-    
+    $conf = mysqli_query($link,$ins) or die(mysqli_error());
+    if ($conf) {
+      header("Location: profile.php?id=".$id);
+    }else{
+      echo "<h3>Erro ao enviar pedido...</h3>";
     }
+  }
 
+  if (isset($_POST['cancelar'])) {
+    cancel();
+  }
+
+  function cancel(){
+    $link = mysqli_connect("127.0.0.1", "root", "", "facebook2");
+    $login_cookie = $_COOKIE['login'];
+    if (!isset($login_cookie)){
+      header("Location: login.php");
+    }
+    $id = $_GET['id'];
+    $saberr = mysqli_query($link, "SELECT * FROM users WHERE id='$id'");
+    $saber = mysqli_fetch_assoc($saberr);
+    $email = $saber['email'];
+
+    $ins = "DELETE FROM amizades WHERE `de`='$login_cookie' AND `para`='$email'";
+    $conf = mysqli_query($link,$ins) or die(mysqli_error());
+    if ($conf) {
+      header("Location: profile.php?id=".$id);
+    }else{
+      echo "<h3>Erro ao cancelar pedido...</h3>";
+    }
+  }
+
+  if (isset($_POST['remover'])) {
+    remove();
+  }
+
+  function remove(){
+    $link = mysqli_connect("127.0.0.1", "root", "", "facebook2");
+    $login_cookie = $_COOKIE['login'];
+    if (!isset($login_cookie)){
+      header("Location: login.php");
+    }
+    $id = $_GET['id'];
+    $saberr = mysqli_query($link, "SELECT * FROM users WHERE id='$id'");
+    $saber = mysqli_fetch_assoc($saberr);
+    $email = $saber['email'];
+
+    $ins = "DELETE FROM amizades WHERE `de`='$login_cookie' AND `para`='$email' OR `para`='$login_cookie' AND `de`='$email'";
+    $conf = mysqli_query($link,$ins) or die(mysqli_error());
+    if ($conf) {
+      header("Location: profile.php?id=".$id);
+    }else{
+      echo "<h3>Erro ao excluir amizade...</h3>";
+    }
+  }
+
+  if (isset($_POST['aceitar'])) {
+    aceitar();
+  }
+
+  function aceitar(){
+    $link = mysqli_connect("127.0.0.1", "root", "", "facebook2");
+    $login_cookie = $_COOKIE['login'];
+    if (!isset($login_cookie)){
+      header("Location: login.php");
+    }
+    $id = $_GET['id'];
+    $saberr = mysqli_query($link, "SELECT * FROM users WHERE id='$id'");
+    $saber = mysqli_fetch_assoc($saberr);
+    $email = $saber['email'];
+
+    $ins = "UPDATE amizades SET `aceite`='sim' WHERE `de`='$email' AND `para`='$login_cookie'";
+    $conf = mysqli_query($link,$ins) or die(mysqli_error());
+    if ($conf) {
+      header("Location: profile.php?id=".$id);
+    }else{
+      echo "<h3>Erro ao excluir amizade...</h3>";
+    }
+  }
 ?>
 <html>
   <header>
@@ -41,6 +117,7 @@
       div#menu{width: 300px; height: 120px; display: block; margin: auto; border: none; border-radius: 5px; background-color: #825A6D; text-align: center;}
       div#menu input{height: 25px; border: none; border-radius: 3px; background-color: #FFF; cursor: pointer;}
       div#menu input[name="add"]{margin-right: 40px;}
+      div#menu input[name="aceitar"]{margin-right: 40px;}
       div#menu input[name="remover"]{margin-right: 40px;}
       div#menu input[name="cancelar"]{margin-right: 40px;}
       div#menu input:hover{height: 25px; border: none; border-radius: 3px; background-color: transparent; cursor: pointer; color: #FFF;}
@@ -68,7 +145,9 @@
         $amigoss = mysqli_fetch_assoc($amigos);
         if (mysqli_num_rows($amigos)>=1 AND $amigoss["aceite"]=="sim"){
           echo '<input type="submit" value="Remover amigo" name="remover"><input type="submit" name="denunciar" value="Denunciar">';
-        }elseif (mysqli_num_rows($amigos)>=1 AND $amigoss["aceite"]=="nao"){
+        }elseif (mysqli_num_rows($amigos)>=1 AND $amigoss["aceite"]=="nao" AND $amigoss["para"]==$login_cookie){
+          echo '<input type="submit" value="Aceitar pedido" name="aceitar"><input type="submit" name="denunciar" value="Denunciar">';
+        }elseif (mysqli_num_rows($amigos)>=1 AND $amigoss["aceite"]=="nao" AND $amigoss["de"]==$login_cookie){
           echo '<input type="submit" value="Cancelar pedido" name="cancelar"><input type="submit" name="denunciar" value="Denunciar">';
         }else{
           echo '<input type="submit" value="Adicionar amigo" name="add"><input type="submit" name="denunciar" value="Denunciar">';

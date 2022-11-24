@@ -28,6 +28,7 @@
       <input type="submit" hidden>
     </form>
     <a href="#"><img src="img/chat.png" width="30" name="menu"></a>
+    <a href="pedidos.php"><img src="img/add.png" width="30" name="menu"></a>
     <a href="myprofile.php"><img src="img/perfil.png" width="30" name="menu"></a>
   </div>  
 </body>
